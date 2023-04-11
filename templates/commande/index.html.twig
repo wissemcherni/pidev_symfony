@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{% endblock %}
+
+{% block content %}
+    <h1>Commande index</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>IdCommande</th>
+                <th>NumPanier</th>
+                <th>Emetteur</th>
+                <th>Depot</th>
+                <th>Statut</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.idCommande }}</td>
+                <td>{{ commande.numPanier }}</td>
+                <td>{{ commande.emetteur }}</td>
+                <td>{{ commande.depot }}</td>
+                <td>{{ commande.statut }}</td>
+                <td>{{ commande.type }}</td>
+                <td>
+                    <a href="{{ path('app_commande_show', {'idCommande': commande.idCommande}) }}" class="btn btn-info btn-sm">Show</a>
+                    <a href="{{ path('app_commande_edit', {'idCommande': commande.idCommande}) }}" class="btn btn-primary btn-sm">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commande_new') }}" class="btn btn-success">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}

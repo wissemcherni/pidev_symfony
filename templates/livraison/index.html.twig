@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livraison {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/livraison.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="page-title">Livraison</h1>
+                <a href="{{ path('app_livraison_new') }}" class="btn btn-primary mb-3 create-button">Create New Livraison</a>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID Livraison</th>
+                            <th>Nom Livreur</th>
+                            <th>Date Livraison</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for livraison in livraisons %}
+                            <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+                                <td>{{ livraison.idLivraison }}</td>
+                                <td>{{ livraison.nomLivreur }}</td>
+                                <td>{{ livraison.dateLivraison ? livraison.dateLivraison|date('Y-m-d') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('app_livraison_show', {'idLivraison': livraison.idLivraison}) }}" class="btn btn-sm btn-primary show-button"><i class="fa fa-eye">Show</i></a>
+                                    <a href="{{ path('app_livraison_edit', {'idLivraison': livraison.idLivraison}) }}" class="btn btn-sm btn-secondary edit-button"><i class="fa fa-pencil">Edit</i></a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">No records found.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

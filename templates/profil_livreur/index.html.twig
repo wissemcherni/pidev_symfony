@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProfilLivreur index{% endblock %}
+
+{% block body %}
+    <h1>ProfilLivreur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdLivreur</th>
+                <th>NomLivreur</th>
+                <th>Secteur</th>
+                <th>MoyLivraison</th>
+                <th>Volume</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for profil_livreur in profil_livreurs %}
+            <tr>
+                <td>{{ profil_livreur.idLivreur }}</td>
+                <td>{{ profil_livreur.nomLivreur }}</td>
+                <td>{{ profil_livreur.secteur }}</td>
+                <td>{{ profil_livreur.moyLivraison }}</td>
+                <td>{{ profil_livreur.volume }}</td>
+                <td>
+                    <a href="{{ path('app_profil_livreur_show', {'idLivreur': profil_livreur.idLivreur}) }}">show</a>
+                    <a href="{{ path('app_profil_livreur_edit', {'idLivreur': profil_livreur.idLivreur}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_profil_livreur_new') }}">Create new</a>
+{% endblock %}

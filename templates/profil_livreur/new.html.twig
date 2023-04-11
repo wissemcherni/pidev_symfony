@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ProfilLivreur{% endblock %}
+
+{% block body %}
+    <h1>Create new ProfilLivreur</h1>
+
+    {{ include('profil_livreur/_form.html.twig') }}
+
+    <a href="{{ path('app_profil_livreur_index') }}">back to list</a>
+{% endblock %}

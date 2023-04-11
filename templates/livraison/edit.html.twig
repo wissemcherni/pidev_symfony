@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Livraison{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title">Edit Livraison</h3>
+                    </div>
+                    <div class="card-body">
+                        {{ include('livraison/_form.html.twig', {'button_label': 'Update'}) }}
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('app_livraison_index') }}" class="btn btn-secondary">back to list</a>
+                        {{ include('livraison/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

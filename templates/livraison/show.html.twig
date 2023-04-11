@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livraison{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title">Détails de la livraison</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>IdLivraison</th>
+                                    <td>{{ livraison.idLivraison }}</td>
+                                </tr>
+                                <tr>
+                                    <th>NomLivreur</th>
+                                    <td>{{ livraison.nomLivreur }}</td>
+                                </tr>
+                                <tr>
+                                    <th>DateLivraison</th>
+                                    <td>{{ livraison.dateLivraison ? livraison.dateLivraison|date('Y-m-d') : '' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('app_livraison_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                        <a href="{{ path('app_livraison_edit', {'idLivraison': livraison.idLivraison}) }}" class="btn btn-warning">Modifier</a>
+                        {{ include('livraison/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

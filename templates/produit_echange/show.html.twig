@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProduitEchange{% endblock %}
+
+{% block body %}
+    <h1>ProduitEchange</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ produit_echange.id }}</td>
+            </tr>
+            <tr>
+                <th>IdProduit</th>
+                <td>{{ produit_echange.idProduit }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ produit_echange.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_produit_echange_index') }}">back to list</a>
+
+    <a href="{{ path('app_produit_echange_edit', {'id': produit_echange.id}) }}">edit</a>
+
+    {{ include('produit_echange/_delete_form.html.twig') }}
+{% endblock %}

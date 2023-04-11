@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProduitEchange index{% endblock %}
+
+{% block content %}
+    <h1>ProduitEchange index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>IdProduit</th>
+                <th>Type</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit_echange in produit_echanges %}
+            <tr>
+                <td>{{ produit_echange.id }}</td>
+                <td>{{ produit_echange.idProduit }}</td>
+                <td>{{ produit_echange.type }}</td>
+                <td>
+                    <a href="{{ path('app_produit_echange_show', {'id': produit_echange.id}) }}">show</a>
+                    <a href="{{ path('app_produit_echange_edit', {'id': produit_echange.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_produit_echange_new') }}">Create new</a>
+{% endblock %}

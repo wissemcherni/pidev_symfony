@@ -1,0 +1,37 @@
+{{ form_start(form, {'attr': {'class': 'my-form'}}) }}
+
+    <div class="form-group">
+        {{ form_label(form.numPanier, 'Numéro de panier', {'label_attr': {'class': 'my-label'}}) }}
+        {{ form_widget(form.numPanier, {'attr': {'class': 'form-control my-input', 'min': 0, 'required': true}}) }}
+        {{ form_errors(form.numPanier, {'attr': {'class': 'my-error'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.emetteur, 'Emetteur', {'label_attr': {'class': 'my-label'}}) }}
+        {{ form_widget(form.emetteur, {'attr': {'class': 'form-control my-input', 'required': true}}) }}
+        {{ form_errors(form.emetteur, {'attr': {'class': 'my-error'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.depot, 'Dépôt', {'label_attr': {'class': 'my-label'}}) }}
+        {{ form_widget(form.depot, {'attr': {'class': 'form-control my-input', 'minlength': 3, 'maxlength': 20, 'required': true}}) }}
+        {{ form_errors(form.depot, {'attr': {'class': 'my-error'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.statut, 'Statut', {'label_attr': {'class': 'my-label'}}) }}
+        {{ form_widget(form.statut, {'attr': {'class': 'form-control my-select', 'required': true}}) }}
+        {{ form_errors(form.statut, {'attr': {'class': 'my-error'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.type, 'Type', {'label_attr': {'class': 'my-label'}}) }}
+        {{ form_widget(form.type, {'attr': {'class': 'form-control my-select', 'required': true}}) }}
+        {{ form_errors(form.type, {'attr': {'class': 'my-error'}}) }}
+    </div>
+
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+
+{{ form_end(form) }}
+
+

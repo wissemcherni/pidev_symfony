@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+    {{ form_label(form.numCommande) }}
+    {{ form_widget(form.numCommande, {'attr': {'class': 'form-control'}}) }}
+
+    {{ form_label(form.nomLivreur) }}
+    {{ form_widget(form.nomLivreur, {'attr': {'class': 'form-control'}}) }}
+
+    {{ form_label(form.dateLivraison) }}
+    {{ form_widget(form.dateLivraison, {'attr': {'class': 'form-control'}}) }}
+
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+
