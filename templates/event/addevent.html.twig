@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    
+    .container {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+    }
+    
+    form {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        resize: vertical;
+    }
+    
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    /* Style pour le champ de date */
+input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 16px;
+  color: #555;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Style pour le bouton du calendrier */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666'%3E%3Cpath d='M19,2H18V0h-2v2H8V0H6v2H5C3.9,2,3,2.9,3,4v16c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V4C21,2.9,20.1,2,19,2z M19,20H5V8h14V20z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+}
+
+/* Style pour la zone de sélection de date */
+.date-picker {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  display: none;
+}
+
+.date-picker.show {
+  display: block;
+}
+
+.date-picker .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f2f2f2;
+}
+
+.date-picker .header button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.date-picker .header button:hover {
+  text-decoration: underline;
+}
+
+.date-picker .header .month-year {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.date-picker table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.date-picker td,
+.date-picker th {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.date-picker td:hover,
+.date-picker th:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+.date-picker td.today {
+  background-color: #ddd;
+}
+
+.date-picker td.selected {
+  background-color: #4caf50;
+  color: white;
+}
+
+.date-picker td.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.date-picker td.empty {
+  background-color: transparent;
+  border: none;
+  cursor: default;
+}
+
+</style>
+
+<div class="container">
+    <div class="row">
+        {{ form_start(form) }}
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
+
+
+
