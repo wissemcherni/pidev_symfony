@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseback.html.twig' %}
 
 {% block title %}Livraison {% endblock %}
 
@@ -7,6 +7,62 @@
 {% endblock %}
 
 {% block content %}
+<h1>Recherche de livraisons</h1>
+    
+    <div class="form-group">
+        <label for="nom_livreur">Nom du livreur :</label>
+        <input type="text" id="nom_livreur" name="nom_livreur" class="form-control" />
+    </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom du livreur</th>
+                <th>Date de livraison</th>
+                <th>Numéro de commande</th>
+            </tr>
+        </thead>
+        <tbody id="livraisons-table">
+        </tbody>
+    </table>
+{% block javascript %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        $(document).ready(function() {
+    $('#nom_livreur').on('input', function() {
+        $.ajax({
+            url: '{{ path('livraisons_recherche') }}',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                nom_livreur: $(this).val()
+            },
+            success: function(response) {
+               
+                $('#livraisons-table').empty();
+
+                
+                response.livraisons.forEach(function(livraison) {
+                    $('#livraisons-table').append(`
+                        <tr>
+                            <td>${livraison.idLivraison}</td>
+                            <td>${livraison.nomLivreur}</td>
+                            <td>${livraison.dateLivraison}</td>
+                            <td>${livraison.numCommande.idCommande}</td>
+                        </tr>
+                    `);
+                });
+            }
+        });
+    });
+});
+
+    </script>
+    {%  endblock  %}
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -42,4 +98,5 @@
             </div>
         </div>
     </div>
+    
 {% endblock %}

@@ -14,15 +14,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProduitEchangeController extends AbstractController
 {
     #[Route('/', name: 'app_produit_echange_index', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index()
     {
-        $produitEchanges = $entityManager
-            ->getRepository(ProduitEchange::class)
-            ->findAll();
-
-        return $this->render('produit_echange/index.html.twig', [
+        $entityManager = $this->getDoctrine()->getManager();
+        $produitEchanges = $entityManager->getRepository(ProduitEchange::class);
+        $query = $produitEchanges->findAll();
+        var_dump($query->getSQL());
+        /*return $this->render('produit_echange/index.html.twig', [
             'produit_echanges' => $produitEchanges,
-        ]);
+        ]);*/
     }
 
     #[Route('/new', name: 'app_produit_echange_new', methods: ['GET', 'POST'])]

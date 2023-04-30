@@ -1,9 +1,11 @@
-{{ form_start(form, {'attr': {'class': 'my-form'}}) }}
+{{ form_start(form, {'attr': {'novalidate':'novalidate','class': 'my-form'}}) }}
+
 
     <div class="form-group">
-        {{ form_label(form.numPanier, 'Numéro de panier', {'label_attr': {'class': 'my-label'}}) }}
-        {{ form_widget(form.numPanier, {'attr': {'class': 'form-control my-input', 'min': 0, 'required': true}}) }}
-        {{ form_errors(form.numPanier, {'attr': {'class': 'my-error'}}) }}
+        {{ form_label(form.numPanier, 'Numéro de panier') }}
+        {{ form_widget(form.numPanier) }}
+        {{ dump(form_errors(form.numPanier)) }}
+        {{ form_errors(form.numPanier) }}
     </div>
 
     <div class="form-group">

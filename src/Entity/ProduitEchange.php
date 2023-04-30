@@ -75,10 +75,10 @@ class ProduitEchange
         return $this;
     }
 
-    public function getIdCommande(): ?Commande
+    /*public function getIdCommande(): ?Commande
     {
         return $this->idCommande;
-    }
+    }*/
 
     public function setIdCommande(?Commande $idCommande): self
     {

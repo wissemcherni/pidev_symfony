@@ -10,3 +10,7 @@ when@prod:
     framework:
         router:
             strict_requirements: null
+            livraisons_recherche:
+    path: '/livraisons/recherche'
+    controller: App\Controller\LivraisonController::rechercheLivraisons
+    methods: ['GET']

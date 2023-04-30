@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 #[Route('/commande')]
 class CommandeController extends AbstractController
@@ -35,8 +37,11 @@ class CommandeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($commande);
             $entityManager->flush();
-
+            
+            return $this->redirectToRoute('app_commande_pdf', ['id' => $commande->getIdCommande()]);
             return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
+            
+        
         }
 
         return $this->renderForm('commande/new.html.twig', [
@@ -81,4 +86,32 @@ class CommandeController extends AbstractController
 
         return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/pdf/{id}', name: 'app_commande_pdf', methods: ['GET'])]
+public function pdf($id, EntityManagerInterface $entityManager): Response
+{
+    $commande = $entityManager
+        ->getRepository(Commande::class)
+        ->find($id);
+
+    $pdfOptions = new Options();
+    $pdfOptions->set('defaultFont', 'Arial');
+    $dompdf = new Dompdf($pdfOptions);
+
+    $html = $this->renderView('commande/pdf.html.twig', [
+        'commande' => $commande,
+    ]);
+
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+
+    $pdfOutput = $dompdf->output();
+
+    return new Response($pdfOutput, 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'attachment; filename="commande.pdf"'
+    ]);
+}
+
 }

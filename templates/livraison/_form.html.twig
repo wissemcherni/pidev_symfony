@@ -9,5 +9,17 @@
     {{ form_widget(form.dateLivraison, {'attr': {'class': 'form-control'}}) }}
 
     <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+    <script>
+  const dateLivraisonInput = document.querySelector('#livraison_dateLivraison');
+  dateLivraisonInput.addEventListener('change', function() {
+    const dateLivraison = new Date(this.value);
+    const today = new Date();
+    if (dateLivraison <= today) {
+      alert('La date de livraison doit être postérieure à la date d\'aujourd\'hui.');
+      this.value = '';
+    }
+  });
+</script>
+
 {{ form_end(form) }}
 

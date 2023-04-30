@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -26,34 +27,45 @@ class Commande
      *
      * @ORM\Column(name="num_panier", type="integer", nullable=false)
      */
+    
     private $numPanier;
 
     /**
      * @var string
      *
      * @ORM\Column(name="emetteur", type="string", length=255, nullable=false)
+     *  @Assert\NotBlank(message="cahmps vide.")
+     * 
      */
+    
     private $emetteur;
 
     /**
      * @var int
      *
      * @ORM\Column(name="depot", type="integer", nullable=false)
+     *  @Assert\NotBlank(message="cahmps vide.")
      */
+    
     private $depot;
 
     /**
      * @var string
      *
      * @ORM\Column(name="statut", type="string", length=255, nullable=false)
+     *  @Assert\NotBlank(message="cahmps vide.")
+     *  
      */
+    
     private $statut;
 
     /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     *  @Assert\NotBlank
      */
+   
     private $type;
 
     public function getIdCommande(): ?int

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseback.html.twig' %}
 
 {% block title %}ProduitEchange index{% endblock %}
 
@@ -15,7 +15,8 @@
             </tr>
         </thead>
         <tbody>
-        {% for produit_echange in produit_echanges %}
+        {{ var_dump(produit_echanges) }}
+      {# {% for produit_echange in produit_echanges %}
             <tr>
                 <td>{{ produit_echange.id }}</td>
                 <td>{{ produit_echange.idProduit }}</td>
@@ -31,7 +32,7 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table>"#}
 
     <a href="{{ path('app_produit_echange_new') }}">Create new</a>
 {% endblock %}
